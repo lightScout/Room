@@ -7,12 +7,12 @@ import androidx.room.Query
 
 @Dao
 interface RootDao {
-    @Query("SELECT * FROM rootdata")
-    fun getAll(): List<RootData>
+    @Query("SELECT * FROM  drivers")
+    fun getAllDrivers(): List<Drivers>
 
     @Insert
-    fun insertAll(vararg users: RootData)
+    fun insertAllDrivers(vararg users: Drivers)
 
     @Delete
-    fun delete(rootData: RootData)
+    fun deleteDriver(driver: Drivers)
 }
