@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Drivers(
+data class Entity(
     @PrimaryKey val id: Int,
-    val driver: String,
+    val missionName: String,
 )
