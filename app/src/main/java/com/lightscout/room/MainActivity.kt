@@ -12,30 +12,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
 import com.lightscout.room.model.cache.AppDatabase
-import com.lightscout.room.model.network.API
 import com.lightscout.room.ui.theme.RoomTheme
+import com.lightscout.room.viewmodel.LaunchViewModel
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     private lateinit var db: AppDatabase
-    private var api = API()
+    private lateinit var viewMode: LaunchViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "app_database"
-        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
+        db = AppDatabase.getInstance(this)
+        viewMode = LaunchViewModel(db)
+        viewMode.getAllLaunch()
 
+        lifecycleScope.launch {
+            viewMode.dataFlow.collect {
+                Log.d("TAG_JJ", "onCreate: $it")
+            }
+        }
 
-       lifecycleScope.launch {
-           api.getAllDrivers().let {
-               it.forEach { rocketLaunch ->
-                     Log.d("TAG_JJ", "onCreate: $rocketLaunch ")
-               }
-           }
-       }
 
 
 

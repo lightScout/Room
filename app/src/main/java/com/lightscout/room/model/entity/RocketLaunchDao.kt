@@ -10,7 +10,7 @@ interface RocketLaunchDao {
     fun getAllLaunch(): List<Entity>
 
     @Insert
-    fun insertAllLaunch(vararg users: Entity)
+    fun insertLaunch(vararg users: Entity)
 
     @Query("DELETE FROM entity")
     fun deleteLaunch()

@@ -7,4 +7,8 @@ import androidx.room.PrimaryKey
 data class Entity(
     @PrimaryKey val id: Int,
     val missionName: String,
+    val launchDateUTC: String,
+    val details: String?,
+    val launchSuccess: Boolean?,
+    val links: String?
 )

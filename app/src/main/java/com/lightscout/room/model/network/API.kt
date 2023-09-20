@@ -22,7 +22,7 @@ class API {
         }
     }
 
-    suspend fun getAllDrivers(): List<RocketLaunch> {
+    suspend fun getAllLaunch(): List<RocketLaunch> {
         return httpClient.get("https://api.spacexdata.com/v5/launches")
             .body()
 
